@@ -27,13 +27,22 @@ function usdToVnd(amount) {
     return (amount * exchangeRate).toFixed(2);
 }
 
+//Milestone 7
+
+function formatCurrency(type, value) {
+    const formatter = new Intl.NumberFormat(type, {
+        currency: type,
+        style: "currency"
+    });
+    return formatter.format(value);
+}
 
 
 function convertCurrency(from, amount, to) {
     if (from === 'vnd' && to === 'usd') {
-        alert(amount + " " + from + " to " + to + " is " + new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(vndToUsd(amount)));
+        alert(`${amount} ${from} to ${to} is ` + formatCurrency('USD', vndToUsd(amount)));
     } else if (from === 'usd' && to === 'vnd') {
-        alert(amount + " " + from + " to " + to + " is " + new Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(usdToVnd(amount)));
+        alert(`${amount} ${from} to ${to} is ` + formatCurrency('VND', usdToVnd(amount)));
     } else if (from === 'vnd' && to === 'vnd') {
         alert("Please exchange VND to a different currency");
     } else if (from === 'usd' && to === 'usd') {
